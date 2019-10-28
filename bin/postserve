@@ -36,7 +36,7 @@ Additional ENV variables:
 from docopt import docopt
 import os.path
 import openmaptiles
-from openmaptiles.postserve import serve
+from openmaptiles.postserve import Postserve
 from openmaptiles.utils import Bbox, coalesce
 from openmaptiles.consts import *
 
@@ -65,7 +65,7 @@ if __name__ == '__main__':
         mask_zoom = int(args['--mask-zoom'])
         metadata['maskLevel'] = mask_zoom
 
-    serve(
+    Postserve(
         host=args['--serve'],
         port=int(args['--port']),
         pghost=coalesce(
@@ -89,4 +89,4 @@ if __name__ == '__main__':
         mask_layer=mask_layer,
         mask_zoom=mask_zoom,
         verbose=args.get('--verbose'),
-    )
+    ).serve()
